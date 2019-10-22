@@ -1,15 +1,15 @@
 package main
 
 import (
+	"strconv"
 	"fmt"
 	"os"
 )
 
 func main() {
-	s, sep := "", ""
-	for _, arg := range os.Args[1:] {
-		s += sep + arg
-		sep = " "
+	s, sep := "", "\n"
+	for i, arg := range os.Args[0:] {
+		s += strconv.Itoa(i) + " " + arg + sep
 	}
 	fmt.Println(s)
 }
