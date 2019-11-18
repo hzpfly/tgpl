@@ -8,10 +8,21 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
+	"time"
 )
 
 func main() {
-	fmt.Println(MyStringsJoin(os.Args, ", "))
+	start := time.Now()
+	for i:= 0; i<= 10000000; i++ {
+		MyStringsJoin(os.Args, ", ")
+	}
+	fmt.Println("run my own strings join takes: %.2fs seconds.", time.Since(start).Seconds())
+	start = time.Now()
+	for i:= 0; i<= 10000000; i++ {
+		MyStringsJoin2(os.Args, ", ")
+	}
+	fmt.Println("run my own strings join takes: %.2fs seconds.", time.Since(start).Seconds())
 }
 
 func MyStringsJoin(Args []string, Sep string) string {
@@ -20,4 +31,8 @@ func MyStringsJoin(Args []string, Sep string) string {
 		s += Arg + Sep
 	}
 	return s
+}
+
+func MyStringsJoin2(Args []string, Sep string) string {
+	return strings.Join(Args, Sep)
 }
